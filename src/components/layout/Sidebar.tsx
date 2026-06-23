@@ -1,47 +1,41 @@
-import {Link} from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
-export default function Sidebar(){
-    return(
-        <div className='w-64 bg-gray-900 text-white min-h-screen p-5'>
-            <h2 className='text-xl font-bold mb-8'>
-                QuickBite Dashboard
-            </h2>
-            <nav className='space-y-4'>
-                <Link 
-                    to="/dashboard"
-                    className='block'
-                >
-                    Dashboard
-                </Link>
+const menuItems = [
+  { name: "Dashboard", path: "/" },
+  { name: "Orders", path: "/orders" },
+  { name: "Menu", path: "/menu" },
+  { name: "Reviews", path: "/reviews" },
+  { name: "Analytics", path: "/analytics" },
+  { name: "Restaurant Profile", path: "/profile" },
+  { name: "Settings", path: "/settings" },
+];
 
-                <Link 
-                    to="/menu"
-                    className='block'
-                >
-                    Menu
-                </Link>
+export default function Sidebar() {
+  return (
+    <div
+      style={{
+        width: "250px",
+        background: "#08142b",
+        color: "white",
+        padding: "20px",
+      }}
+    >
+      <h2>QuickBite</h2>
 
-                <Link 
-                    to="/orders"
-                    className='block'
-                >
-                    Orders
-                </Link>
-
-                <Link 
-                    to="/reviews"
-                    className='block'
-                >
-                    Reviews
-                </Link>
-
-                <Link 
-                    to="/profile"
-                    className='block'
-                >
-                    Restaurant Profile
-                </Link>
-            </nav>
-        </div>
-    )
+      {menuItems.map((item) => (
+        <NavLink
+          key={item.path}
+          to={item.path}
+          style={{
+            display: "block",
+            color: "white",
+            textDecoration: "none",
+            padding: "12px 0",
+          }}
+        >
+          {item.name}
+        </NavLink>
+      ))}
+    </div>
+  );
 }
